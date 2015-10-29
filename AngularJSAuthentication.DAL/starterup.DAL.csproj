@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AngularJSAuthentication.EDMX\AngularJSAuthentication.EDMX.csproj">
+    <ProjectReference Include="..\AngularJSAuthentication.EDMX\starterup.EDMX.csproj">
       <Project>{5fe51f05-0d62-46a8-b5f4-4fde7c8cd7a8}</Project>
-      <Name>AngularJSAuthentication.EDMX</Name>
+      <Name>starterup.EDMX</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

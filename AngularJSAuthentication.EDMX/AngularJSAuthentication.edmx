@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="StarterUpModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="AccountName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountContact" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerEmail" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="OwnerPhone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="OnSale" Type="bit" Nullable="false" />
+          <Property Name="SupplierID" Type="int" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="AccountID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="SalePrice" Type="decimal" Precision="19" Scale="4" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Units" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductSubcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="SubcategoryID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Subcategories">
+          <Key>
+            <PropertyRef Name="SubcategoryID" />
+          </Key>
+          <Property Name="SubcategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SubcategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSubcategory_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductSubcategory" Type="Self.ProductSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductSubcategory">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSubcategory_Subcategories">
+          <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="1" />
+          <End Role="ProductSubcategory" Type="Self.ProductSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategories">
+              <PropertyRef Name="SubcategoryID" />
+            </Principal>
+            <Dependent Role="ProductSubcategory">
+              <PropertyRef Name="SubcategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategories_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Subcategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StarterUpModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductSubcategory" EntityType="Self.ProductSubcategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subcategories" EntityType="Self.Subcategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Products_Accounts" Association="Self.FK_Products_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSubcategory_Products" Association="Self.FK_ProductSubcategory_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductSubcategory" EntitySet="ProductSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSubcategory_Subcategories" Association="Self.FK_ProductSubcategory_Subcategories">
+            <End Role="Subcategories" EntitySet="Subcategories" />
+            <End Role="ProductSubcategory" EntitySet="ProductSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategories_Categories" Association="Self.FK_Subcategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Subcategories" EntitySet="Subcategories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StarterUpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OwnerEmail" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="OwnerPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Products_Accounts" FromRole="Accounts" ToRole="Products" />
+          <Property Name="AccountContact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Subcategories" Relationship="Self.FK_Subcategories_Categories" FromRole="Categories" ToRole="Subcategories" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="OnSale" Type="Boolean" Nullable="false" />
+          <Property Name="SupplierID" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AccountID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SalePrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Units" Type="Int32" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Products_Accounts" FromRole="Products" ToRole="Accounts" />
+          <NavigationProperty Name="ProductSubcategory" Relationship="Self.FK_ProductSubcategory_Products" FromRole="Products" ToRole="ProductSubcategory" />
+        </EntityType>
+        <EntityType Name="ProductSubcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="SubcategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_ProductSubcategory_Products" FromRole="ProductSubcategory" ToRole="Products" />
+          <NavigationProperty Name="Subcategories" Relationship="Self.FK_ProductSubcategory_Subcategories" FromRole="ProductSubcategory" ToRole="Subcategories" />
+        </EntityType>
+        <EntityType Name="Subcategories">
+          <Key>
+            <PropertyRef Name="SubcategoryID" />
+          </Key>
+          <Property Name="SubcategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SubcategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_Subcategories_Categories" FromRole="Subcategories" ToRole="Categories" />
+          <NavigationProperty Name="ProductSubcategory" Relationship="Self.FK_ProductSubcategory_Subcategories" FromRole="Subcategories" ToRole="ProductSubcategory" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Products_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategories_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Subcategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSubcategory_Products">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="ProductSubcategory" Type="Self.ProductSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ProductID" />
+            </Principal>
+            <Dependent Role="ProductSubcategory">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductSubcategory_Subcategories">
+          <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="1" />
+          <End Role="ProductSubcategory" Type="Self.ProductSubcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategories">
+              <PropertyRef Name="SubcategoryID" />
+            </Principal>
+            <Dependent Role="ProductSubcategory">
+              <PropertyRef Name="SubcategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StarterUpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="ProductSubcategory" EntityType="Self.ProductSubcategory" />
+          <EntitySet Name="Subcategories" EntityType="Self.Subcategories" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_Products_Accounts" Association="Self.FK_Products_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategories_Categories" Association="Self.FK_Subcategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Subcategories" EntitySet="Subcategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSubcategory_Products" Association="Self.FK_ProductSubcategory_Products">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductSubcategory" EntitySet="ProductSubcategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductSubcategory_Subcategories" Association="Self.FK_ProductSubcategory_Subcategories">
+            <End Role="Subcategories" EntitySet="Subcategories" />
+            <End Role="ProductSubcategory" EntitySet="ProductSubcategory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StarterUpModelStoreContainer" CdmEntityContainer="StarterUpEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="StarterUpModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="AccountContact" ColumnName="AccountContact" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="OwnerEmail" ColumnName="OwnerEmail" />
+                <ScalarProperty Name="OwnerPhone" ColumnName="OwnerPhone" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="StarterUpModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="StarterUpModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="OnSale" ColumnName="OnSale" />
+                <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Units" ColumnName="Units" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSubcategory">
+            <EntityTypeMapping TypeName="StarterUpModel.ProductSubcategory">
+              <MappingFragment StoreEntitySet="ProductSubcategory">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="SubcategoryID" ColumnName="SubcategoryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subcategories">
+            <EntityTypeMapping TypeName="StarterUpModel.Subcategories">
+              <MappingFragment StoreEntitySet="Subcategories">
+                <ScalarProperty Name="SubcategoryID" ColumnName="SubcategoryID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubcategoryName" ColumnName="SubcategoryName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StarterUpModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

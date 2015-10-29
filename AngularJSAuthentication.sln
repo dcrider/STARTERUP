@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJSAuthentication.API", "AngularJSAuthentication.API\AngularJSAuthentication.API.csproj", "{23DFCFD5-B158-4C0D-9C31-5E9CB64C64CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJSAuthentication.Web", "AngularJSAuthentication.Web\AngularJSAuthentication.Web.csproj", "{E4156422-2684-4222-95C2-4B9AE4CBA7E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJSAuthentication.ResourceServer", "AngularJSAuthentication.ResourceServer\AngularJSAuthentication.ResourceServer.csproj", "{69BC6280-CF91-409C-81BF-28B95417ACBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJSAuthentication.DAL", "AngularJSAuthentication.DAL\AngularJSAuthentication.DAL.csproj", "{EEAED3D3-B8C8-4C79-9762-F15A8024B2BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularJSAuthentication.EDMX", "AngularJSAuthentication.EDMX\AngularJSAuthentication.EDMX.csproj", "{5FE51F05-0D62-46A8-B5F4-4FDE7C8CD7A8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{23DFCFD5-B158-4C0D-9C31-5E9CB64C64CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23DFCFD5-B158-4C0D-9C31-5E9CB64C64CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23DFCFD5-B158-4C0D-9C31-5E9CB64C64CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23DFCFD5-B158-4C0D-9C31-5E9CB64C64CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4156422-2684-4222-95C2-4B9AE4CBA7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4156422-2684-4222-95C2-4B9AE4CBA7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4156422-2684-4222-95C2-4B9AE4CBA7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4156422-2684-4222-95C2-4B9AE4CBA7E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69BC6280-CF91-409C-81BF-28B95417ACBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69BC6280-CF91-409C-81BF-28B95417ACBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69BC6280-CF91-409C-81BF-28B95417ACBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69BC6280-CF91-409C-81BF-28B95417ACBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEAED3D3-B8C8-4C79-9762-F15A8024B2BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEAED3D3-B8C8-4C79-9762-F15A8024B2BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEAED3D3-B8C8-4C79-9762-F15A8024B2BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEAED3D3-B8C8-4C79-9762-F15A8024B2BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FE51F05-0D62-46A8-B5F4-4FDE7C8CD7A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FE51F05-0D62-46A8-B5F4-4FDE7C8CD7A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FE51F05-0D62-46A8-B5F4-4FDE7C8CD7A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FE51F05-0D62-46A8-B5F4-4FDE7C8CD7A8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

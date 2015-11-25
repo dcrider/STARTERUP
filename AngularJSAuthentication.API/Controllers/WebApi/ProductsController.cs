@@ -1,24 +1,28 @@
-﻿using AngularJSAuthentication.API.Models;
-using AngularJSAuthentication.API.Results;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
+using AngularJSAuthentication.DAL;
 
 namespace AngularJSAuthentication.API.Controllers
 {
     public class ProductsController : ApiController
     {
+        [HttpGet, Route("get/{id}")]
+        public IHttpActionResult Get(int id)
+        {
+            var result = Products.getProducts(id);
+            return Ok(result);
+        }
+
+        [HttpGet, Route("getAll")]
+        public IHttpActionResult GetAll()
+        {
+            var result = Products.getAllProducts();
+            return Ok(result);
+        }
     }
 }

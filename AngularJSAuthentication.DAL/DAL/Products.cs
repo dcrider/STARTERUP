@@ -10,15 +10,15 @@ using AngularJSAuthentication.DAL.Models;
 
 namespace AngularJSAuthentication.DAL
 {
-    public static class Categories
+    public static class Products
     {
 
-        public static List<CategoryDTO> MapEntity(List<AngularJSAuthentication.EDMX.Categories> data)
+        public static List<ProductDTO> MapEntity(List<AngularJSAuthentication.EDMX.Products> data)
         {
             if (data == null) return null;
 
-            var result = new List<CategoryDTO>();
-            data.ForEach( o => 
+            var result = new List<ProductDTO>();
+            data.ForEach(o =>
             {
                 var r = MapEntity(o);
 
@@ -29,37 +29,43 @@ namespace AngularJSAuthentication.DAL
             return result;
         }
 
-        public static CategoryDTO MapEntity(AngularJSAuthentication.EDMX.Categories data)
+        public static ProductDTO MapEntity(AngularJSAuthentication.EDMX.Products data)
         {
             if (data == null) return null;
 
-            var result = new CategoryDTO()
+            var result = new ProductDTO()
             {
-                CategoryID = data.CategoryID,
-                CategoryName = data.CategoryName,
-                IsActive = data.IsActive,
+                ProductID = data.ProductID,
+                ProductName = data.ProductName,
+                OnSale = data.OnSale,
+                SupplierID = (int)data.SupplierID,
                 DateCreated = data.DateCreated,
+                AccountID = data.AccountID,
+                CategoryID = data.CategoryID,
+                IsActive = data.IsActive,
+                Price = (decimal)data.Price,
+                SalePrice = (decimal)data.SalePrice,
                 Description = data.Description
+
             };
 
             return result;
         }
 
-        public static List<CategoryDTO> getCategories(int id) {
-
+        public static List<ProductDTO> getProducts (int id) 
+        {
             using (StarterUpEntities db = new StarterUpEntities())
             {
-                var result = db.Categories.Where(o => o.CategoryID == id).ToList();
+                var result = db.Products.Where(o => o.ProductID == id).ToList();
                 return MapEntity(result);
             }
         }
 
-        public static List<CategoryDTO> getAllCategories()
+        public static List<ProductDTO> getAllProducts()
         {
-
             using (StarterUpEntities db = new StarterUpEntities())
             {
-                var result = db.Categories.ToList();
+                var result = db.Products.ToList();
                 return MapEntity(result);
             }
         }

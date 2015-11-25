@@ -8,6 +8,16 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/home.html"
     });
 
+    $routeProvider.when("/about", {
+        controller: "aboutController",
+        templateUrl: "/app/views/about.html"
+    });
+
+    $routeProvider.when("/contact", {
+        controller: "contactController",
+        templateUrl: "/app/views/contact.html"
+    });
+
     $routeProvider.when("/login", {
         controller: "loginController",
         templateUrl: "/app/views/login.html"

@@ -20,5 +20,12 @@ namespace AngularJSAuthentication.API.Controllers
             return Ok(result);
         }
 
+        [HttpGet, Route("getAll")]
+        public IHttpActionResult GetAll()
+        {
+            var result = Categories.getAllCategories();
+            return Ok(result);
+        }
+
     }
 }

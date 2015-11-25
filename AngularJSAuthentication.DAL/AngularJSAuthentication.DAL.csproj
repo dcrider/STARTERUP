@@ -47,20 +47,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAL\Categories.cs" />
+    <Compile Include="DAL\Products.cs" />
     <Compile Include="Models\CategoryDTO.cs" />
+    <Compile Include="Models\ProductDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AngularJSAuthentication.EDMX\starterup.EDMX.csproj">
+    <ProjectReference Include="..\AngularJSAuthentication.EDMX\AngularJSAuthentication.EDMX.csproj">
       <Project>{5fe51f05-0d62-46a8-b5f4-4fde7c8cd7a8}</Project>
-      <Name>starterup.EDMX</Name>
+      <Name>AngularJSAuthentication.EDMX</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
